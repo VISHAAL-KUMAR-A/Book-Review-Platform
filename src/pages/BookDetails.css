@@ -1,0 +1,386 @@
+.book-details-page {
+  padding: 40px 0;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 140px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.book-details {
+  display: flex;
+  gap: 40px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.book-details-image {
+  position: relative;
+  flex: 0 0 300px;
+}
+
+.book-details-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.book-details-content {
+  flex: 1;
+}
+
+.book-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.book-author {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0 0 20px 0;
+}
+
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.book-genre,
+.book-date,
+.book-isbn {
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.book-description {
+  margin-bottom: 30px;
+}
+
+.book-description h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.book-description p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+.book-reviews-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.review-form-container {
+  margin-bottom: 40px;
+}
+
+.review-form-container h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid #c8e6c9;
+}
+
+.error-message {
+  background-color: #fff0f0;
+  color: #d32f2f;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid #ffcdd2;
+}
+
+.review-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+}
+
+.rating-input {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.rating-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rating-radio {
+  margin-right: 5px;
+}
+
+.star {
+  color: #ffc107;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #3a80d2;
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-prompt {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-prompt p {
+  font-size: 16px;
+  color: #555;
+}
+
+.login-prompt a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
+}
+
+.reviews-list h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 30px 0;
+  color: #777;
+  font-style: italic;
+}
+
+.source-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.google-badge {
+  background-color: rgba(66, 133, 244, 0.9);
+}
+
+.local-badge {
+  background-color: rgba(52, 168, 83, 0.9);
+}
+
+.additional-details {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.details-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.details-list li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #495057;
+}
+
+.view-external {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #4285F4;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.view-external:hover {
+  background-color: #3367D6;
+}
+
+.google-books-info {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 25px;
+  margin-top: 40px;
+}
+
+.google-books-info p {
+  margin-bottom: 15px;
+  color: #495057;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.error-actions {
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .book-details {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .book-details-image {
+    flex: 0 0 auto;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .book-title {
+    font-size: 2rem;
+  }
+  
+  .rating-input {
+    gap: 10px;
+  }
+}
+
+.save-to-library {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.save-to-library p {
+  margin-bottom: 15px;
+  color: #495057;
+}
+
+.save-btn {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.save-btn:hover:not(:disabled) {
+  background-color: #3a80d2;
+}
+
+.save-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

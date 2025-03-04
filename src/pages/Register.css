@@ -1,0 +1,49 @@
+.register-page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-color: #f8f9fa;
+}
+
+/* We can reuse most of the styles from Login.css since they share the same structure */
+/* The auth-container, auth-card, auth-title, auth-error, auth-form, form-group, form-label, 
+   form-control, btn-block, auth-footer, and auth-link classes are all defined in Login.css */
+
+/* Add any Register-specific styles below */
+.password-requirements {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+/* Password strength indicator */
+.password-strength {
+  height: 5px;
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.strength-weak {
+  background-color: #dc3545;
+  width: 33%;
+}
+
+.strength-medium {
+  background-color: #ffc107;
+  width: 66%;
+}
+
+.strength-strong {
+  background-color: #28a745;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .register-page .auth-card {
+    padding: 1.5rem;
+  }
+} 

@@ -1,0 +1,163 @@
+.navbar {
+  background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo h1 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navbar-item {
+  margin-left: 1.5rem;
+}
+
+.navbar-link {
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.navbar-link:hover {
+  color: var(--primary-color);
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+.navbar-btn {
+  padding: 0.5rem 1rem;
+}
+
+.navbar-toggle {
+  display: none;
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  position: relative;
+}
+
+.navbar-icon {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-color);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.navbar-icon::before,
+.navbar-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: transform 0.3s ease;
+}
+
+.navbar-icon::before {
+  top: -8px;
+}
+
+.navbar-icon::after {
+  bottom: -8px;
+}
+
+.navbar-icon.open {
+  background-color: transparent;
+}
+
+.navbar-icon.open::before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-icon.open::after {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .navbar-menu.active {
+    max-height: 300px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-item {
+    margin: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-link {
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-link::after {
+    display: none;
+  }
+
+  .navbar-btn {
+    margin-top: 0.5rem;
+    width: 80%;
+  }
+} 
