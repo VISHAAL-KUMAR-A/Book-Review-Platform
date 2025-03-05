@@ -1,12 +1,15 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Review = require('../models/Review');
-const auth = require('../middleware/auth');
-const validate = require('../middleware/validate');
-const { createReviewValidation, getReviewsValidation } = require('../validations/reviewValidations');
+const Review = require("../models/Review");
+const auth = require("../middleware/auth");
+const validate = require("../middleware/validate");
+const {
+  createReviewValidation,
+  getReviewsValidation,
+} = require("../validations/reviewValidations");
 
 // GET /reviews - Retrieve reviews for a book or by a user
-router.get('/', validate(getReviewsValidation), async (req, res) => {
+router.get("/", validate(getReviewsValidation), async (req, res) => {
   try {
     const bookId = req.query.bookId;
     const userId = req.query.userId;
@@ -21,12 +24,14 @@ router.get('/', validate(getReviewsValidation), async (req, res) => {
 
     // If neither bookId nor userId is provided, return an error
     if (!bookId && !userId) {
-      return res.status(400).json({ message: 'Either bookId or userId is required' });
+      return res
+        .status(400)
+        .json({ message: "Either bookId or userId is required" });
     }
 
     const reviews = await Review.find(query)
-      .populate('user', 'username')
-      .populate('book', 'title author')
+      .populate("user", "username")
+      .populate("book", "title author")
       .skip(skip)
       .limit(limit)
       .sort({ createdAt: -1 });
@@ -37,7 +42,7 @@ router.get('/', validate(getReviewsValidation), async (req, res) => {
       reviews,
       currentPage: page,
       totalPages: Math.ceil(total / limit),
-      totalReviews: total
+      totalReviews: total,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -45,32 +50,49 @@ router.get('/', validate(getReviewsValidation), async (req, res) => {
 });
 
 // POST /reviews - Submit a new review
-router.post('/', [auth, validate(createReviewValidation)], async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
+    const { bookId, rating, comment } = req.body;
+
+    // Validate required fields
+    if (!bookId || !rating || !comment) {
+      return res.status(400).json({
+        message:
+          "Missing required fields: bookId, rating, and comment are required",
+      });
+    }
+
     // Check if user has already reviewed this book
     const existingReview = await Review.findOne({
-      book: req.body.bookId,
-      user: req.user._id
+      book: bookId,
+      user: req.user._id,
     });
 
     if (existingReview) {
-      return res.status(400).json({ message: 'You have already reviewed this book' });
+      return res.status(400).json({
+        message: "You have already reviewed this book",
+      });
     }
 
     const review = new Review({
-      book: req.body.bookId,
+      book: bookId,
       user: req.user._id,
-      rating: req.body.rating,
-      comment: req.body.comment
+      rating: rating,
+      comment: comment,
     });
 
-    const newReview = await review.save();
-    await newReview.populate('user', 'username');
-    
-    res.status(201).json(newReview);
+    await review.save();
+
+    // Populate user and book details before sending response
+    const populatedReview = await Review.findById(review._id)
+      .populate("user", "username")
+      .populate("book", "title author coverImage");
+
+    res.status(201).json(populatedReview);
   } catch (error) {
+    console.error("Create review error:", error);
     res.status(400).json({ message: error.message });
   }
 });
 
-module.exports = router; 
+module.exports = router;
