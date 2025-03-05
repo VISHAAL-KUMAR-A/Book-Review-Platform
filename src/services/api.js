@@ -12,7 +12,7 @@ import axios from 'axios';
  * @throws {Error} - Error with message from API or default message
  */
 async function handleResponse(response) {
-  if (!response.ok) {
+  if (!(response.status >= 200 && response.status < 300)) {
     let errorMessage = `Request failed with status: ${response.status}`;
     
     // Try to get more detailed error information
@@ -40,7 +40,7 @@ async function handleResponse(response) {
     throw new Error(errorMessage);
   }
   
-  return response.json();
+  return response;
 }
 
 /**
