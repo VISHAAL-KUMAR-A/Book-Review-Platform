@@ -14,10 +14,14 @@ If you are developing a production application, we recommend using TypeScript an
 # This is a Book review platform 
 
 To use this first do
-```https://github.com/VISHAAL-KUMAR-A/Book-Review-Platform.git```
+```sh 
+https://github.com/VISHAAL-KUMAR-A/Book-Review-Platform.git
+```
 
 After cloning install requirements.txt
-```pip install -r requirements.txt```
+```sh 
+pip install -r requirements.txt
+```
 
 After the installation close the vscode and open the project as a folder
 
@@ -29,7 +33,9 @@ cd server
 node index.js
 ```
 To connect frontend(from another terminal)
-```npm run dev```
+```sh 
+npm run dev
+```
 
 You will get a link to open it in a browser.
 Here you can register your account and view books which is being provided by google api
