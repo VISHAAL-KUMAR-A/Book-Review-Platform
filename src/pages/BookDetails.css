@@ -286,7 +286,7 @@
 .view-external {
   display: inline-block;
   margin-top: 10px;
-  background-color: #4285F4;
+  background-color: #4285f4;
   color: white;
   padding: 8px 16px;
   border-radius: 4px;
@@ -296,7 +296,7 @@
 }
 
 .view-external:hover {
-  background-color: #3367D6;
+  background-color: #3367d6;
 }
 
 .google-books-info {
@@ -326,23 +326,22 @@
   margin-top: 20px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .book-details {
     flex-direction: column;
     gap: 30px;
   }
-  
+
   .book-details-image {
     flex: 0 0 auto;
     max-width: 250px;
     margin: 0 auto;
   }
-  
+
   .book-title {
     font-size: 2rem;
   }
-  
+
   .rating-input {
     gap: 10px;
   }

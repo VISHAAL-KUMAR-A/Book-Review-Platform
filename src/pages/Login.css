@@ -89,7 +89,6 @@
   text-decoration: underline;
 }
 
-/* Animation for form elements */
 .auth-card {
   animation: fadeIn 0.5s ease-out;
 }
@@ -105,13 +104,12 @@
   }
 }
 
-/* Responsive adjustments */
 @media (max-width: 480px) {
   .auth-card {
     padding: 1.5rem;
   }
-  
+
   .auth-title {
     font-size: 1.75rem;
   }
-} 
+}

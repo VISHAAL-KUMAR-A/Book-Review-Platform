@@ -48,7 +48,6 @@ router.get("/:id", validate(getBookValidation), async (req, res) => {
   }
 });
 
-// POST /books - Add a new book (admin only)
 router.post(
   "/",
   [auth, admin, validate(createBookValidation)],

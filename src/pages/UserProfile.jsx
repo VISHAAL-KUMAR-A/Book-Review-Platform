@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ReviewCard from '../components/ReviewCard';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { usersAPI, reviewsAPI } from '../services/api';
-import './UserProfile.css';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ReviewCard from "../components/ReviewCard";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { usersAPI, reviewsAPI } from "../services/api";
+import "./UserProfile.css";
 
 const UserProfile = ({ user }) => {
   const navigate = useNavigate();
@@ -12,9 +12,9 @@ const UserProfile = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    bio: ''
+    username: "",
+    email: "",
+    bio: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
@@ -22,40 +22,36 @@ const UserProfile = ({ user }) => {
   const [updateSuccess, setUpdateSuccess] = useState(false);
 
   useEffect(() => {
-    // Redirect to login if not authenticated
     if (!user) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
     const fetchUserData = async () => {
       setLoading(true);
       try {
-        // With normalized user object, we can directly use user._id and user.token
         if (!user._id) {
-          throw new Error('User ID is undefined. Please log in again.');
+          throw new Error("User ID is undefined. Please log in again.");
         }
-        
+
         // Fetch user profile using the API service
         const profileData = await usersAPI.getUserProfile(user._id, user.token);
         setProfile(profileData);
         setFormData({
           username: profileData.username,
           email: profileData.email,
-          bio: profileData.bio || ''
+          bio: profileData.bio || "",
         });
 
         try {
           // Fetch user reviews using the API service
           const reviewsData = await reviewsAPI.getReviews({ userId: user._id });
-          // No need to filter as the API now returns reviews by userId
           setUserReviews(reviewsData.reviews || []);
         } catch (reviewErr) {
-          console.error('Error fetching reviews:', reviewErr);
-          // Don't fail the whole profile load if reviews fail
+          console.error("Error fetching reviews:", reviewErr);
           setUserReviews([]);
         }
-        
+
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -70,7 +66,7 @@ const UserProfile = ({ user }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -81,13 +77,16 @@ const UserProfile = ({ user }) => {
     setUpdateSuccess(false);
 
     try {
-      // With normalized user object, we can directly use user._id and user.token
       if (!user._id) {
-        throw new Error('User ID is undefined. Please log in again.');
+        throw new Error("User ID is undefined. Please log in again.");
       }
-      
+
       // Update user profile using the API service
-      const updatedProfile = await usersAPI.updateUserProfile(user._id, formData, user.token);
+      const updatedProfile = await usersAPI.updateUserProfile(
+        user._id,
+        formData,
+        user.token
+      );
       setProfile(updatedProfile);
       setIsEditing(false);
       setUpdateSuccess(true);
@@ -148,14 +147,14 @@ const UserProfile = ({ user }) => {
               </div>
             )}
 
-            {updateError && (
-              <div className="error-message">{updateError}</div>
-            )}
+            {updateError && <div className="error-message">{updateError}</div>}
 
             {isEditing ? (
               <form onSubmit={handleSubmit} className="profile-form">
                 <div className="form-group">
-                  <label htmlFor="username" className="form-label">Username:</label>
+                  <label htmlFor="username" className="form-label">
+                    Username:
+                  </label>
                   <input
                     type="text"
                     id="username"
@@ -167,7 +166,9 @@ const UserProfile = ({ user }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email" className="form-label">Email:</label>
+                  <label htmlFor="email" className="form-label">
+                    Email:
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -179,7 +180,9 @@ const UserProfile = ({ user }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="bio" className="form-label">Bio:</label>
+                  <label htmlFor="bio" className="form-label">
+                    Bio:
+                  </label>
                   <textarea
                     id="bio"
                     name="bio"
@@ -201,7 +204,7 @@ const UserProfile = ({ user }) => {
                         <LoadingSpinner size="small" color="light" /> Saving...
                       </>
                     ) : (
-                      'Save Changes'
+                      "Save Changes"
                     )}
                   </button>
                   <button
@@ -233,7 +236,9 @@ const UserProfile = ({ user }) => {
             <h2 className="section-title">Your Reviews</h2>
             <div className="user-reviews">
               {userReviews.length === 0 ? (
-                <p className="no-reviews">You haven't written any reviews yet.</p>
+                <p className="no-reviews">
+                  You haven't written any reviews yet.
+                </p>
               ) : (
                 userReviews.map((review) => (
                   <ReviewCard key={review._id} review={review} />
@@ -247,4 +252,4 @@ const UserProfile = ({ user }) => {
   );
 };
 
-export default UserProfile; 
+export default UserProfile;

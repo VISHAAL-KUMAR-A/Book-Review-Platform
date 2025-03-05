@@ -1,6 +1,9 @@
-/* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
   color: var(--white);
   padding: 4rem 0;
   margin-bottom: 3rem;
@@ -41,7 +44,6 @@
   height: auto;
 }
 
-/* Featured Books Section */
 .featured-books {
   margin-bottom: 4rem;
 }
@@ -60,7 +62,7 @@
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -0.5rem;
   left: 0;
@@ -85,7 +87,7 @@
 }
 
 .section-link::after {
-  content: '→';
+  content: "→";
   margin-left: 0.5rem;
   transition: transform 0.3s ease;
 }
@@ -94,7 +96,8 @@
   transform: translateX(5px);
 }
 
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 2rem;
   background-color: var(--light-gray);
@@ -105,7 +108,6 @@
   color: #e53e3e;
 }
 
-/* How It Works Section */
 .how-it-works {
   background-color: var(--light-gray);
   padding: 4rem 0;
@@ -153,7 +155,6 @@
   line-height: 1.6;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 2.25rem;
@@ -204,4 +205,4 @@
     left: 50%;
     transform: translateX(-50%);
   }
-} 
+}

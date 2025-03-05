@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { authAPI } from '../services/api';
-import './Login.css';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { authAPI } from "../services/api";
+import "./Login.css";
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -17,7 +17,7 @@ const Login = ({ setUser }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -27,23 +27,25 @@ const Login = ({ setUser }) => {
     setError(null);
 
     try {
-      console.log('Sending login data to API:', JSON.stringify({ email: formData.email, password: '***' }));
-      
+      console.log(
+        "Sending login data to API:",
+        JSON.stringify({ email: formData.email, password: "***" })
+      );
+
       // Use the API service to login
       const userData = await authAPI.login(formData);
-      console.log('Login successful:', userData);
-      
+      console.log("Login successful:", userData);
+
       // Save user data to localStorage
-      localStorage.setItem('user', JSON.stringify(userData));
-      
+      localStorage.setItem("user", JSON.stringify(userData));
+
       // Update app state
       setUser(userData);
-      
-      // Redirect to home page
-      navigate('/');
+
+      navigate("/");
     } catch (err) {
-      console.error('Login error:', err);
-      setError(err.message || 'An unexpected error occurred during login');
+      console.error("Login error:", err);
+      setError(err.message || "An unexpected error occurred during login");
       setLoading(false);
     }
   };
@@ -53,16 +55,14 @@ const Login = ({ setUser }) => {
       <div className="auth-container">
         <div className="auth-card">
           <h1 className="auth-title">Login</h1>
-          
-          {error && (
-            <div className="auth-error">
-              {error}
-            </div>
-          )}
-          
+
+          {error && <div className="auth-error">{error}</div>}
+
           <form onSubmit={handleSubmit} className="auth-form">
             <div className="form-group">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -74,9 +74,11 @@ const Login = ({ setUser }) => {
                 placeholder="Enter your email"
               />
             </div>
-            
+
             <div className="form-group">
-              <label htmlFor="password" className="form-label">Password</label>
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -88,7 +90,7 @@ const Login = ({ setUser }) => {
                 placeholder="Enter your password"
               />
             </div>
-            
+
             <button
               type="submit"
               className="btn btn-primary btn-block"
@@ -99,14 +101,17 @@ const Login = ({ setUser }) => {
                   <LoadingSpinner size="small" color="light" /> Logging in...
                 </>
               ) : (
-                'Login'
+                "Login"
               )}
             </button>
           </form>
-          
+
           <div className="auth-footer">
             <p>
-              Don't have an account? <Link to="/register" className="auth-link">Register</Link>
+              Don't have an account?{" "}
+              <Link to="/register" className="auth-link">
+                Register
+              </Link>
             </p>
           </div>
         </div>
@@ -115,4 +120,4 @@ const Login = ({ setUser }) => {
   );
 };
 
-export default Login; 
+export default Login;

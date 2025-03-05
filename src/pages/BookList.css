@@ -174,20 +174,20 @@
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 20px;
   }
-  
+
   .search-form {
     flex-direction: column;
   }
-  
+
   .search-input {
     border-radius: 4px;
     margin-bottom: 10px;
   }
-  
+
   .search-btn {
     border-radius: 4px;
   }
-  
+
   .filter-options {
     flex-direction: column;
     gap: 15px;
@@ -247,5 +247,3 @@
   margin: 10px 0;
   color: #6c757d;
 }
-
-// ... existing code ...

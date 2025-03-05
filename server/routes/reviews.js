@@ -17,12 +17,10 @@ router.get("/", validate(getReviewsValidation), async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
 
-    // Build query based on parameters
     const query = {};
     if (bookId) query.book = bookId;
     if (userId) query.user = userId;
 
-    // If neither bookId nor userId is provided, return an error
     if (!bookId && !userId) {
       return res
         .status(400)
@@ -49,12 +47,10 @@ router.get("/", validate(getReviewsValidation), async (req, res) => {
   }
 });
 
-// POST /reviews - Submit a new review
 router.post("/", auth, async (req, res) => {
   try {
     const { bookId, rating, comment } = req.body;
 
-    // Validate required fields
     if (!bookId || !rating || !comment) {
       return res.status(400).json({
         message:

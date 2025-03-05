@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import BookCard from '../components/BookCard';
-import { booksAPI } from '../services/api';
-import bookIllustration from '../assets/images/book-illustration.jpg';
-import './Home.css';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import BookCard from "../components/BookCard";
+import { booksAPI } from "../services/api";
+import bookIllustration from "../assets/images/book-illustration.jpg";
+import "./Home.css";
 
 const Home = () => {
   const [featuredBooks, setFeaturedBooks] = useState([]);
@@ -27,13 +27,13 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* Hero Section */}
       <section className="hero">
         <div className="container hero-container">
           <div className="hero-content">
             <h1 className="hero-title">Discover Your Next Favorite Book</h1>
             <p className="hero-description">
-              Explore our vast collection of books, read reviews, and join a community of book lovers.
+              Explore our vast collection of books, read reviews, and join a
+              community of book lovers.
             </p>
             <div className="hero-buttons">
               <Link to="/books" className="btn btn-primary hero-btn">
@@ -49,8 +49,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Featured Books Section */}
       <section className="featured-books">
         <div className="container">
           <div className="section-header">
@@ -73,8 +71,6 @@ const Home = () => {
           )}
         </div>
       </section>
-
-      {/* How It Works Section */}
       <section className="how-it-works">
         <div className="container">
           <h2 className="section-title text-center">How It Works</h2>
@@ -107,4 +103,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;

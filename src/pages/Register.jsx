@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { authAPI } from '../services/api';
-import './Register.css';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { authAPI } from "../services/api";
+import "./Register.css";
 
 const Register = ({ setUser }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,7 +19,7 @@ const Register = ({ setUser }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -28,9 +28,8 @@ const Register = ({ setUser }) => {
     setLoading(true);
     setError(null);
 
-    // Validate passwords match
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       setLoading(false);
       return;
     }
@@ -40,26 +39,30 @@ const Register = ({ setUser }) => {
       const registerData = {
         username: formData.username,
         email: formData.email,
-        password: formData.password
+        password: formData.password,
       };
-      
-      console.log('Sending registration data to API:', JSON.stringify(registerData));
-      
+
+      console.log(
+        "Sending registration data to API:",
+        JSON.stringify(registerData)
+      );
+
       // Use the API service to register
       const userData = await authAPI.register(registerData);
-      console.log('Registration successful:', userData);
-      
+      console.log("Registration successful:", userData);
+
       // Save user data to localStorage
-      localStorage.setItem('user', JSON.stringify(userData));
-      
+      localStorage.setItem("user", JSON.stringify(userData));
+
       // Update app state
       setUser(userData);
-      
-      // Redirect to home page
-      navigate('/');
+
+      navigate("/");
     } catch (err) {
-      console.error('Registration error:', err);
-      setError(err.message || 'An unexpected error occurred during registration');
+      console.error("Registration error:", err);
+      setError(
+        err.message || "An unexpected error occurred during registration"
+      );
       setLoading(false);
     }
   };
@@ -69,16 +72,14 @@ const Register = ({ setUser }) => {
       <div className="auth-container">
         <div className="auth-card">
           <h1 className="auth-title">Create Account</h1>
-          
-          {error && (
-            <div className="auth-error">
-              {error}
-            </div>
-          )}
-          
+
+          {error && <div className="auth-error">{error}</div>}
+
           <form onSubmit={handleSubmit} className="auth-form">
             <div className="form-group">
-              <label htmlFor="username" className="form-label">Username</label>
+              <label htmlFor="username" className="form-label">
+                Username
+              </label>
               <input
                 type="text"
                 id="username"
@@ -90,9 +91,11 @@ const Register = ({ setUser }) => {
                 placeholder="Choose a username"
               />
             </div>
-            
+
             <div className="form-group">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -104,9 +107,11 @@ const Register = ({ setUser }) => {
                 placeholder="Enter your email"
               />
             </div>
-            
+
             <div className="form-group">
-              <label htmlFor="password" className="form-label">Password</label>
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -119,9 +124,11 @@ const Register = ({ setUser }) => {
                 minLength="6"
               />
             </div>
-            
+
             <div className="form-group">
-              <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+              <label htmlFor="confirmPassword" className="form-label">
+                Confirm Password
+              </label>
               <input
                 type="password"
                 id="confirmPassword"
@@ -134,7 +141,7 @@ const Register = ({ setUser }) => {
                 minLength="6"
               />
             </div>
-            
+
             <button
               type="submit"
               className="btn btn-primary btn-block"
@@ -142,17 +149,21 @@ const Register = ({ setUser }) => {
             >
               {loading ? (
                 <>
-                  <LoadingSpinner size="small" color="light" /> Creating Account...
+                  <LoadingSpinner size="small" color="light" /> Creating
+                  Account...
                 </>
               ) : (
-                'Register'
+                "Register"
               )}
             </button>
           </form>
-          
+
           <div className="auth-footer">
             <p>
-              Already have an account? <Link to="/login" className="auth-link">Login</Link>
+              Already have an account?{" "}
+              <Link to="/login" className="auth-link">
+                Login
+              </Link>
             </p>
           </div>
         </div>

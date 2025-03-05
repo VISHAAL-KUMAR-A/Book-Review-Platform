@@ -1,8 +1,6 @@
 // API base URL
-// Change this to match your backend server URL and port
 const API_BASE_URL = "http://localhost:3000/api";
 
-// Add this import at the top of the file
 import axios from "axios";
 
 /**
@@ -15,7 +13,6 @@ async function handleResponse(response) {
   if (!(response.status >= 200 && response.status < 300)) {
     let errorMessage = `Request failed with status: ${response.status}`;
 
-    // Try to get more detailed error information
     try {
       // First try to parse as JSON
       const errorData = await response.json();
@@ -28,16 +25,13 @@ async function handleResponse(response) {
         const textContent = await response.text();
         console.error("API Response (not JSON):", textContent);
 
-        // Check if it's an HTML response (likely a server error page)
         if (
           textContent.includes("<!DOCTYPE html>") ||
           textContent.includes("<html>")
         ) {
           errorMessage = `Server error (${response.status}). The API server might be down or unreachable.`;
         }
-      } catch {
-        // If even text extraction fails, use the default error message
-      }
+      } catch {}
     }
 
     throw new Error(errorMessage);
@@ -388,7 +382,6 @@ export const googleBooksAPI = {
   getBookById: async (volumeId) => {
     try {
       console.log("Fetching Google Book details for ID:", volumeId);
-      // Using the API without a key for basic fetches
       const response = await axios.get(
         `https://www.googleapis.com/books/v1/volumes/${volumeId}`
       );

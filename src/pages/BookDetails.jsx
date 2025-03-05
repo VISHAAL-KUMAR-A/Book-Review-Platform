@@ -37,8 +37,6 @@ const BookDetails = ({ user, source }) => {
       } else if (path.includes("/books/local/")) {
         setBookSource("local");
       } else {
-        // Legacy URL - we'll need to guess based on ID format or redirect
-        // For now, let's assume MongoDB IDs are 24 characters
         setBookSource(id.length === 24 ? "local" : "google");
       }
     }
@@ -72,7 +70,7 @@ const BookDetails = ({ user, source }) => {
                 bookId: checkResult.book._id,
               });
 
-              console.log("Fetched reviews:", reviewsData); // Debug log
+              console.log("Fetched reviews:", reviewsData);
               setReviews(reviewsData.reviews || []);
             } else {
               setReviews([]);
@@ -91,7 +89,7 @@ const BookDetails = ({ user, source }) => {
           // Fetch reviews for local book
           try {
             const reviewsData = await reviewsAPI.getReviews({ bookId: id });
-            console.log("Fetched reviews:", reviewsData); // Debug log
+            console.log("Fetched reviews:", reviewsData);
             setReviews(reviewsData.reviews || []);
           } catch (reviewErr) {
             console.error("Error fetching reviews:", reviewErr);
@@ -126,12 +124,9 @@ const BookDetails = ({ user, source }) => {
     }
 
     try {
-      // Make sure we have the book data
       if (!book) {
         throw new Error("Book data not available");
       }
-
-      // Format the book data for saving
       const bookToSave = {
         title: book.title,
         author: book.author,
@@ -143,10 +138,10 @@ const BookDetails = ({ user, source }) => {
         pageCount: book.pageCount,
         publisher: book.publisher,
         language: book.language,
-        googleBooksId: book.googleBooksId || id, // Use the ID from the URL if not in book data
+        googleBooksId: book.googleBooksId || id,
       };
 
-      console.log("Saving book to library:", bookToSave); // Debug log
+      console.log("Saving book to library:", bookToSave);
 
       // Save the book using the API
       const result = await booksAPI.saveGoogleBook(bookToSave, user.token);
@@ -177,12 +172,10 @@ const BookDetails = ({ user, source }) => {
     setSubmitError(null);
 
     try {
-      // Validate form data
       if (!reviewForm.rating || !reviewForm.comment) {
         throw new Error("Please provide both rating and comment");
       }
 
-      // Make sure we have a valid book ID
       const bookIdToUse = localBookId || book._id;
       if (!bookIdToUse) {
         throw new Error("Book ID is missing");
@@ -221,11 +214,8 @@ const BookDetails = ({ user, source }) => {
 
   const stripHtmlTags = (html) => {
     if (!html) return "";
-    // Create a temporary div element
     const tempDiv = document.createElement("div");
-    // Set the HTML content
     tempDiv.innerHTML = html;
-    // Return the text content
     return tempDiv.textContent || tempDiv.innerText || "";
   };
 
