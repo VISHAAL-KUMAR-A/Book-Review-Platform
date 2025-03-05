@@ -40,7 +40,12 @@ async function handleResponse(response) {
     throw new Error(errorMessage);
   }
   
-  return response;
+  try {
+    const data = await response.json();
+    return data;
+  }catch (error) {
+    return response
+  }
 }
 
 /**

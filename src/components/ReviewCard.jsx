@@ -3,7 +3,7 @@ import './ReviewCard.css';
 
 const ReviewCard = ({ review }) => {
   // Format the date to show how long ago the review was posted
-  const timeAgo = formatDistanceToNow(new Date(review.createdAt), { addSuffix: true });
+  // const timeAgo = formatDistanceToNow(new Date(review.createdAt), { addSuffix: true });
 
   // Generate star rating display
   const renderStars = (rating) => {
@@ -27,7 +27,7 @@ const ReviewCard = ({ review }) => {
           </div>
           <div className="review-user-info">
             <h4 className="review-username">{review.user.username}</h4>
-            <span className="review-date">{timeAgo}</span>
+            {/* <span className="review-date">{timeAgo}</span> */}
           </div>
         </div>
         <div className="review-rating">

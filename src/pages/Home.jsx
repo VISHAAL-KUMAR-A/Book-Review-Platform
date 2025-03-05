@@ -66,7 +66,7 @@ const Home = () => {
             <div className="error">{error}</div>
           ) : (
             <div className="grid grid-cols-4">
-              {featuredBooks.map((book) => (
+              {featuredBooks?.map((book) => (
                 <BookCard key={book._id} book={book} />
               ))}
             </div>
