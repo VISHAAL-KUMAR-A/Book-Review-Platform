@@ -24,9 +24,10 @@ After the installation close the vscode and open the project as a folder
 #Now open 2 terminal(most important part)
 
 To connect backend(from one terminal)
-```cd server```
-```node index.js```
-
+```sh
+cd server
+node index.js
+```
 To connect frontend(from another terminal)
 ```npm run dev```
 
