@@ -3,9 +3,9 @@ const { body, query } = require('express-validator');
 const createReviewValidation = [
   body('bookId')
     .notEmpty()
-    .withMessage('Book ID is required')
-    .isMongoId()
-    .withMessage('Invalid book ID'),
+    .withMessage('Book ID is required'),
+    // .isMongoId()
+    // .withMessage('Invalid book ID')
   
   body('rating')
     .notEmpty()
@@ -23,9 +23,9 @@ const createReviewValidation = [
 
 const getReviewsValidation = [
   query('bookId')
-    .optional()
-    .isMongoId()
-    .withMessage('Invalid book ID'),
+    .optional(),
+    // .isMongoId()
+    // .withMessage('Invalid book ID'),
   
   query('userId')
     .optional()
